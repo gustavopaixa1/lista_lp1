@@ -11,8 +11,8 @@ import java.util.NoSuchElementException;
  * required input.
  */
 public class Validator {
-    Scanner sc;
-    boolean closed = false;
+    private Scanner sc;
+    private boolean closed = false;
 
     /**
      * Constructs a new {@code Validator} that produces values scanned
@@ -44,13 +44,13 @@ public class Validator {
      * @param msg   A String which will be shown to the user
      * @param err   A String which will be shown to the user if the input don't meet
      *              the necessary requiriments
-     * @param teste A Predicate that receives an Integer and that must return a
+     * @param test A Predicate that receives an Integer and that must return a
      *              boolean value
      * @return An Integer with the requirements informed in the Predicate
      * @throws IllegalStateException  if this class Scanner is closed
      * @throws NoSuchElementException if input is exhausted
      */
-    public int validateInt(String msg, String err, Predicate<Integer> teste) {
+    public int validateInt(String msg, String err, Predicate<Integer> test) {
         if (closed)
             throw new IllegalStateException("This class Scanner was already closed.");
 
@@ -59,7 +59,7 @@ public class Validator {
             try {
                 System.out.printf(msg);
                 aux = sc.nextInt();
-                if (teste.test(aux))
+                if (test.test(aux))
                     break;
                 throw new Exception();
             } catch (Exception e) {
@@ -77,13 +77,13 @@ public class Validator {
      * @param msg   A String which will be shown to the user.
      * @param err   A String which will be shown to the user if the input don't meet
      *              the necessary requiriments
-     * @param teste A Predicate that receives a Double and that must return a
+     * @param test A Predicate that receives a Double and that must return a
      *              boolean value
      * @return A Double with the requirements informed in the Predicate
      * @throws IllegalStateException  if this class Scanner is closed
      * @throws NoSuchElementException if input is exhausted
      */
-    public double validateDouble(String msg, String err, Predicate<Double> teste) {
+    public double validateDouble(String msg, String err, Predicate<Double> test) {
         if (closed)
             throw new IllegalStateException("This class Scanner was already closed.");
 
@@ -92,7 +92,7 @@ public class Validator {
             try {
                 System.out.printf(msg);
                 aux = sc.nextDouble();
-                if (teste.test(aux))
+                if (test.test(aux))
                     break;
                 throw new Exception();
             } catch (Exception e) {
@@ -110,13 +110,13 @@ public class Validator {
      * @param msg   A String which will be shown to the user.
      * @param err   A String which will be shown to the user if the input don't meet
      *              the necessary requiriments
-     * @param teste A Predicate that receives a String and that must return a
+     * @param test A Predicate that receives a String and that must return a
      *              boolean value
      * @return A String with the requirements informed in the Predicate
      * @throws IllegalStateException  if this class Scanner is closed
      * @throws NoSuchElementException if no line was found
      */
-    public String validateString(String msg, String err, Predicate<String> teste) {
+    public String validateString(String msg, String err, Predicate<String> test) {
         if (closed)
             throw new IllegalStateException("This class Scanner was already closed.");
 
@@ -125,7 +125,7 @@ public class Validator {
             try {
                 System.out.printf(msg);
                 aux = sc.nextLine().strip();
-                if (teste.test(aux))
+                if (test.test(aux))
                     break;
                 throw new Exception();
             } catch (Exception e) {
